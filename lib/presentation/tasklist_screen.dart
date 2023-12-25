@@ -58,22 +58,34 @@ class _TasklistScreenState extends State<TasklistScreen> {
             child: ListBody(
               children: <Widget>[
                 TextField(
+                  textCapitalization: TextCapitalization.words,
                   controller: _titleController,
                   decoration: InputDecoration(
                     labelText: "Title"
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 TextField(
+                  textCapitalization: TextCapitalization.sentences,
                   controller: _descriptionController,
                   decoration: InputDecoration(
                     labelText: "Description"
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 TextField(
+                  textCapitalization: TextCapitalization.words,
                   controller: _categoryController,
                   decoration: InputDecoration(
                     labelText: "Category"
                   ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 DropdownButtonFormField(
                   decoration: InputDecoration(
@@ -97,6 +109,9 @@ class _TasklistScreenState extends State<TasklistScreen> {
                     });
                   },
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 ElevatedButton(
                     onPressed: () async {
                       DateTime? deadline = await showDatePicker(
@@ -109,7 +124,7 @@ class _TasklistScreenState extends State<TasklistScreen> {
                       });
                     },
                     child: Text(
-                      "Deadline"
+                      "SET DEADLINE"
                     )
                 )
               ],
@@ -173,6 +188,9 @@ class _TasklistScreenState extends State<TasklistScreen> {
         padding: EdgeInsets.fromLTRB(20, 1.2 * kToolbarHeight, 20, 20),
         child: Column(
           children: [
+            SizedBox(
+              height: 40,
+            ),
             Text(
               "Tasks",
               style: GoogleFonts.varelaRound(
@@ -197,9 +215,32 @@ class _TasklistScreenState extends State<TasklistScreen> {
                       );
                       refreshTasks();
                     },
-                    child: ListTile(
-                      title: Text(task.name),
-                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: ListTile(
+                            title: Text(
+                              task.name,
+                              style: GoogleFonts.lato(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            subtitle: Text(task.description),
+                            contentPadding: EdgeInsets.all(10),
+                            tileColor: Colors.transparent,
+                            textColor: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        )
+                      ],
+                    )
                   );
                 }
               ),

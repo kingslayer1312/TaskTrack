@@ -61,8 +61,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/google_fonts/Lato/
-    - assets/google_fonts/Varela_Round/
+    - assets/google_fonts/Montserrat/
+    - assets/google_fonts/Poppins/
     - assets/images/
 
   # To add assets to your application, add an assets section, like this:
