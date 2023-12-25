@@ -24,17 +24,17 @@ class TasksDatabase {
     final booleanType = 'BOOLEAN NOT NULL';
     final stringType = 'TEXT NOT NULL';
 
-    await db.execute('''
-      CREATE TABLE $tasksTable (
+    await db.execute(
+      '''CREATE TABLE $tasksTable (
         ${TaskFields.id} $identifierType,
-        ${TaskFields.name} $identifierType,
-        ${TaskFields.description} $identifierType,
-        ${TaskFields.category} $identifierType,
-        ${TaskFields.priority} $identifierType,
+        ${TaskFields.name} $stringType,
+        ${TaskFields.description} $stringType,
+        ${TaskFields.category} $stringType,
+        ${TaskFields.priority} $stringType,
         ${TaskFields.deadline} $stringType,
-        ${TaskFields.status} $booleanType,
-      )
-    ''');
+        ${TaskFields.status} $booleanType
+      )'''
+    );
   }
 
   Future<Task> createTask(Task task) async {
