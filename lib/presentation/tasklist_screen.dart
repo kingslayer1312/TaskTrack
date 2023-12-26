@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasktrack/database/tasks_database.dart';
 import 'package:tasktrack/presentation/taskdetails_screen.dart';
+import 'package:tasktrack/themes/eclipsar_theme.dart';
+import 'package:tasktrack/themes/polaris_theme.dart';
 
 import '../models/task.dart';
 
@@ -53,14 +55,30 @@ class _TasklistScreenState extends State<TasklistScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('New Task'),
+          backgroundColor: PolarisTheme.midnightSlate,
+          title: Text(
+            'New Task',
+            style: GoogleFonts.montserrat(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: EclipsarTheme.ivory
+            ),
+          ),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 TextField(
+                  cursorColor: EclipsarTheme.ivory,
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: EclipsarTheme.ivory
+                  ),
                   textCapitalization: TextCapitalization.words,
                   controller: _titleController,
                   decoration: InputDecoration(
+                    labelStyle: TextStyle(
+                      color: EclipsarTheme.ivory
+                    ),
                     labelText: "Title"
                   ),
                 ),
@@ -68,9 +86,17 @@ class _TasklistScreenState extends State<TasklistScreen> {
                   height: 10,
                 ),
                 TextField(
+                  cursorColor: EclipsarTheme.ivory,
+                  style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      color: EclipsarTheme.ivory
+                  ),
                   textCapitalization: TextCapitalization.sentences,
                   controller: _descriptionController,
                   decoration: InputDecoration(
+                      labelStyle: TextStyle(
+                          color: EclipsarTheme.ivory
+                      ),
                     labelText: "Description"
                   ),
                 ),
@@ -78,9 +104,17 @@ class _TasklistScreenState extends State<TasklistScreen> {
                   height: 10,
                 ),
                 TextField(
+                  cursorColor: EclipsarTheme.ivory,
+                  style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      color: EclipsarTheme.ivory
+                  ),
                   textCapitalization: TextCapitalization.words,
                   controller: _categoryController,
                   decoration: InputDecoration(
+                      labelStyle: TextStyle(
+                          color: EclipsarTheme.ivory
+                      ),
                     labelText: "Category"
                   ),
                 ),
@@ -88,7 +122,15 @@ class _TasklistScreenState extends State<TasklistScreen> {
                   height: 10,
                 ),
                 DropdownButtonFormField(
+                  dropdownColor: PolarisTheme.midnightSlate,
+                  style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      color: EclipsarTheme.ivory
+                  ),
                   decoration: InputDecoration(
+                      labelStyle: TextStyle(
+                        color: EclipsarTheme.ivory
+                      ),
                     labelText: "Priority"
                   ),
                   value: prioritySelection,
@@ -109,12 +151,35 @@ class _TasklistScreenState extends State<TasklistScreen> {
                     });
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(EclipsarTheme.sereneBlue),
+                    foregroundColor: MaterialStatePropertyAll<Color>(PolarisTheme.midnightSlate)
+                  ),
                     onPressed: () async {
                       DateTime? deadline = await showDatePicker(
+                        helpText: "Set Deadline",
+                        builder: (context, child) {
+                          return Theme(
+                              data: Theme.of(context).copyWith(
+                                colorScheme: const ColorScheme(
+                                    brightness: Brightness.dark,
+                                    primary: PolarisTheme.midnightSlate,
+                                    onPrimary: PolarisTheme.pureSnow,
+                                    secondary: EclipsarTheme.sereneBlue,
+                                    onSecondary: EclipsarTheme.deepNavy,
+                                    error: PolarisTheme.coralBlaze,
+                                    onError: PolarisTheme.mintBreeze,
+                                    background: PolarisTheme.midnightSlate,
+                                    onBackground: PolarisTheme.midnightSlate,
+                                    surface: EclipsarTheme.sereneBlue,
+                                    onSurface: PolarisTheme.midnightSlate)
+                              ),
+                              child: child!);
+                        },
                           context: context,
                           firstDate: DateTime.now(),
                           lastDate: DateTime(DateTime.now().year + 2)
@@ -124,7 +189,12 @@ class _TasklistScreenState extends State<TasklistScreen> {
                       });
                     },
                     child: Text(
-                      "SET DEADLINE"
+                      "SET DEADLINE",
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: PolarisTheme.midnightSlate
+                      ),
                     )
                 )
               ],
@@ -136,11 +206,23 @@ class _TasklistScreenState extends State<TasklistScreen> {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "CANCEL"
+                  "CANCEL",
+                  style: GoogleFonts.poppins(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                      color: EclipsarTheme.ivory
+                  ),
                 )
             ),
             TextButton(
-              child: Text('DONE'),
+              child: Text(
+                  'DONE',
+                style: GoogleFonts.poppins(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                    color: EclipsarTheme.ivory
+                ),
+              ),
               onPressed: () async {
                 taskDetails = [
                   _titleController.text.trim(),
@@ -171,34 +253,39 @@ class _TasklistScreenState extends State<TasklistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: EclipsarTheme.sereneBlue,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           newTask();
         },
+        backgroundColor: PolarisTheme.midnightSlate,
+        foregroundColor: EclipsarTheme.ivory,
+        child: const Icon(Icons.add),
       ),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         scrolledUnderElevation: 0.0,
         backgroundColor: Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarBrightness: Brightness.dark
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(20, 1.2 * kToolbarHeight, 20, 20),
+        padding: const EdgeInsets.fromLTRB(20, 1.2 * kToolbarHeight, 20, 20),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Text(
               "Tasks",
-              style: GoogleFonts.varelaRound(
-                fontWeight: FontWeight.w600,
-                fontSize: 50
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.bold,
+                fontSize: 50,
+                color: PolarisTheme.midnightSlate
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
@@ -219,18 +306,26 @@ class _TasklistScreenState extends State<TasklistScreen> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(12),
+                            color: PolarisTheme.midnightSlate,
+                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: ListTile(
                             title: Text(
                               task.name,
-                              style: GoogleFonts.lato(
+                              style: GoogleFonts.poppins(
                                 fontSize: 20,
-                                fontWeight: FontWeight.bold
+                                fontWeight: FontWeight.bold,
+                                color: PolarisTheme.pureSnow
                               ),
                             ),
-                            subtitle: Text(task.description),
+                            subtitle: Text(
+                              task.description,
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                  color: PolarisTheme.pureSnow
+                              )
+                            ),
                             contentPadding: EdgeInsets.all(10),
                             tileColor: Colors.transparent,
                             textColor: Colors.black,
