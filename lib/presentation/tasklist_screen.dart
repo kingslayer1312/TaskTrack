@@ -45,9 +45,10 @@ class _TasklistScreenState extends State<TasklistScreen> {
   Future<void> newTask() async {
     final _titleController = TextEditingController();
     final _descriptionController = TextEditingController();
-    final _categoryController = TextEditingController();
+    String categorySelection = "GENERAL";
     String prioritySelection = "HIGH";
     DateTime? pickedDate;
+    var categories = ['GENERAL', 'WORK', 'HOME', 'FITNESS', 'FINANCE'];
     var priorities = ['HIGH', 'MEDIUM', 'LOW'];
 
     return showDialog<void>(
@@ -103,20 +104,35 @@ class _TasklistScreenState extends State<TasklistScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                TextField(
-                  cursorColor: EclipsarTheme.ivory,
+                DropdownButtonFormField(
+                  dropdownColor: PolarisTheme.midnightSlate,
                   style: GoogleFonts.poppins(
                       fontSize: 16,
                       color: EclipsarTheme.ivory
                   ),
-                  textCapitalization: TextCapitalization.words,
-                  controller: _categoryController,
                   decoration: InputDecoration(
                       labelStyle: TextStyle(
                           color: EclipsarTheme.ivory
                       ),
-                    labelText: "Category"
+                      labelText: "Category"
                   ),
+                  value: categorySelection,
+                  items: categories.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      categorySelection = newValue!;
+                    });
+                  },
+                  onSaved: (String? newValue) {
+                    setState(() {
+                      categorySelection = newValue!;
+                    });
+                  },
                 ),
                 SizedBox(
                   height: 10,
@@ -170,7 +186,7 @@ class _TasklistScreenState extends State<TasklistScreen> {
                                     primary: PolarisTheme.midnightSlate,
                                     onPrimary: PolarisTheme.pureSnow,
                                     secondary: EclipsarTheme.sereneBlue,
-                                    onSecondary: EclipsarTheme.deepNavy,
+                                    onSecondary: PolarisTheme.midnightSlate,
                                     error: PolarisTheme.coralBlaze,
                                     onError: PolarisTheme.mintBreeze,
                                     background: PolarisTheme.midnightSlate,
@@ -227,7 +243,7 @@ class _TasklistScreenState extends State<TasklistScreen> {
                 taskDetails = [
                   _titleController.text.trim(),
                   _descriptionController.text.trim(),
-                  _categoryController.text.trim(),
+                  categorySelection,
                   prioritySelection,
                   pickedDate?.toIso8601String() ?? ""
                 ];
