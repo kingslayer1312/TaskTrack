@@ -62,7 +62,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
         body: Padding(
             padding: const EdgeInsets.fromLTRB(
                 20, 1.2 * kToolbarHeight, 20, 20),
-            child: Expanded(
+            child: SingleChildScrollView(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,6 +122,128 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                           ],
                         )
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: PolarisTheme.midnightSlate,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Deadline",
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 18,
+                                  color: PolarisTheme.pureSnow,
+                                  fontWeight: FontWeight.w600
+                              ),
+                            ),
+                            Divider(
+
+                            ),
+                            Text(
+                                "${task.deadline.day}/"
+                                    "${task.deadline.month}/"
+                                    "${task.deadline.year}",
+                                style: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 20,
+                                    color: PolarisTheme.pureSnow
+                                )
+                            ),
+                          ],
+                        )
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: PolarisTheme.midnightSlate,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Priority",
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 18,
+                                  color: PolarisTheme.pureSnow,
+                                  fontWeight: FontWeight.w600
+                              ),
+                            ),
+                            Divider(
+
+                            ),
+                            Text(
+                                "${task.priority}",
+                                style: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 20,
+                                    color: PolarisTheme.pureSnow
+                                )
+                            ),
+                          ],
+                        )
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: PolarisTheme.midnightSlate,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Category",
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 18,
+                                  color: PolarisTheme.pureSnow,
+                                  fontWeight: FontWeight.w600
+                              ),
+                            ),
+                            Divider(
+
+                            ),
+                            Text(
+                                "${task.category}",
+                                style: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 20,
+                                    color: PolarisTheme.pureSnow
+                                )
+                            ),
+                          ],
+                        )
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                        onPressed: () async {
+                          await TasksDatabase.instance.deleteTask(task.id!);
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                            "DELETE TASK"
+                        )
+                    )
                   ]
               ),
             )
@@ -129,3 +251,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     );
   }
 }
+
+/*
+
+ */
