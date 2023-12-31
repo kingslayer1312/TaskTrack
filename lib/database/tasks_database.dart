@@ -59,9 +59,17 @@ class TasksDatabase {
     }
   }
 
-  Future<List<Task>> readAllTasks() async {
+  Future<List<Task>> readAllTasks(String condition) async {
     final db = await instance.database;
-    final tasks = await db.query(tasksTable);
+    final tasks = await db.rawQuery('''
+      SELECT * FROM $tasksTable ORDER BY $condition
+    ''');
+    return tasks.map((json) => Task.fromJson(json)).toList();
+  }
+
+  Future<List<Task>> readAllTasksByCategory(String category) async {
+    final db = await instance.database;
+    final tasks = await db.rawQuery('''SELECT * FROM $tasksTable WHERE category=$category''');
     return tasks.map((json) => Task.fromJson(json)).toList();
   }
 

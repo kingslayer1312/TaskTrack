@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tasktrack/presentation/category_screen.dart';
 import 'package:tasktrack/presentation/home_screen.dart';
 import 'package:tasktrack/presentation/tasklist_screen.dart';
-import 'package:tasktrack/themes/duskenvale_theme.dart';
-import 'package:tasktrack/themes/eclipsar_theme.dart';
-import 'package:tasktrack/themes/polaris_theme.dart';
+import 'package:tasktrack/themes/app_theme.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
@@ -21,8 +19,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
       bottomNavigationBar: NavigationBar(
         height: 70,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-        backgroundColor: PolarisTheme.midnightSlate,
-        indicatorColor: PolarisTheme.coralBlaze,
+        backgroundColor: AppTheme.gunmetal,
+        indicatorColor: AppTheme.dun,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
@@ -33,25 +31,34 @@ class _NavigationScreenState extends State<NavigationScreen> {
           NavigationDestination(
             icon: Icon(
               Icons.home_outlined,
-              color: EclipsarTheme.ivory,
+              color: Colors.white70,
             ),
-            selectedIcon: Icon(Icons.home),
+            selectedIcon: Icon(
+              Icons.home,
+              color: Colors.black87,
+            ),
             label: 'Home'
           ),
           NavigationDestination(
             icon: Icon(
               Icons.task_outlined,
-              color: EclipsarTheme.ivory,
+              color: Colors.white70,
             ),
-            selectedIcon: Icon(Icons.task),
+              selectedIcon: Icon(
+                Icons.task,
+                color: Colors.black87,
+              ),
             label: 'Tasks'
           ),
           NavigationDestination(
             icon: Icon(
               Icons.category_outlined,
-              color: EclipsarTheme.ivory,
+              color: Colors.white70,
             ),
-            selectedIcon: Icon(Icons.category),
+              selectedIcon: Icon(
+                Icons.category,
+                color: Colors.black87,
+              ),
             label: 'Categories'
           )
         ],

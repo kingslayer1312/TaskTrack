@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:tasktrack/database/tasks_database.dart';
-import 'package:tasktrack/themes/duskenvale_theme.dart';
-import 'package:tasktrack/themes/eclipsar_theme.dart';
-
+import 'package:tasktrack/themes/app_theme.dart';
 import '../models/task.dart';
-import '../themes/polaris_theme.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,8 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Task> tasks = [];
   int numberOfTasks = 0;
   bool isLoading = false;
-
-
 
   String greeting() {
     var hour = DateTime.now().hour;
@@ -42,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       isLoading = true;
     });
     tasks = [];
-    tasks = await TasksDatabase.instance.readAllTasks();
+    tasks = await TasksDatabase.instance.readAllTasks("deadline");
     setState(() {
       isLoading = false;
       numberOfTasks = tasks.length;
@@ -59,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     refreshTasks();
     return Scaffold(
-      backgroundColor: EclipsarTheme.sereneBlue,
+      backgroundColor: AppTheme.dun,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -74,35 +68,75 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   "TaskTrack",
                   style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 50,
-                    color: PolarisTheme.midnightSlate
+                    fontWeight: FontWeight.w400,
+                    fontSize: 60,
+                    color: Colors.black87
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
-                Text(
-                  "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
-                  style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35,
-                      color: PolarisTheme.midnightSlate
-                  ),
+                PhysicalModel(
+                    color: Colors.white70,
+                    elevation: 30,
+                    shadowColor: AppTheme.khaki,
+                    borderRadius: BorderRadius.circular(150),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(40.0), // Adjust the radius as needed
+                      child: Container(
+                          height: 60.0,
+                          width: 300.0,// Adjust the height as needed
+                          color: AppTheme.gunmetal,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  DateFormat("dd.MM.yyyy").format(DateTime.now()),
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24,
+                                      color: Colors.white70
+                                  ),
+                                ),
+                                Spacer(
+                                  flex: 2,
+                                ),
+                                VerticalDivider(
+                                  color: AppTheme.dun,
+                                ),
+                                Spacer(
+                                  flex: 2,
+                                ),
+                                Text(
+                                  "${DateFormat("kk:mm").format(DateTime.now())} ${DateTime.now().timeZoneName}",
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24,
+                                      color: Colors.white70
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )// Adjust the color as needed
+                      ),
+                    ),
                 ),
                 SizedBox(
                   height: 50,
                 ),
                 PhysicalModel(
-                  color: Colors.white,
+                  color: Colors.white70,
                   elevation: 30,
-                  shadowColor: Colors.blue,
+                  shadowColor: AppTheme.khaki,
                   borderRadius: BorderRadius.circular(150),
                   child: Container(
                       width: 300,
                       height: 300,
                       decoration: BoxDecoration(
-                          color: PolarisTheme.midnightSlate,
+                          color: AppTheme.gunmetal,
                           shape: BoxShape.circle
                       ),
                       child: Center(
@@ -111,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 250,
                           height: 250,
                           decoration: BoxDecoration(
-                              color: EclipsarTheme.deepNavy,
+                              color: AppTheme.khaki,
                               shape: BoxShape.circle
                           ),
                           child: Center(
@@ -123,19 +157,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                   style: GoogleFonts.montserrat(
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
-                                    color: PolarisTheme.coralBlaze
+                                    color: AppTheme.gunmetal
                                   ),
                                 ),
                                 Divider(
                                   thickness: 0.5,
-                                  color: PolarisTheme.pureSnow,
+                                  color: Colors.black87,
                                 ),
                                 Text(
                                   "$numberOfTasks",
                                   style: GoogleFonts.poppins(
                                       fontSize: 30,
                                       fontWeight: FontWeight.w600,
-                                      color: PolarisTheme.mintBreeze
+                                      color: AppTheme.hookersGreen
                                   ),
                                 ),
                               ],
