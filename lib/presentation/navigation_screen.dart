@@ -49,17 +49,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
               ),
             label: 'Tasks'
           ),
-          // NavigationDestination(
-          //   icon: Icon(
-          //     Icons.settings_outlined,
-          //     color: Colors.white70,
-          //   ),
-          //     selectedIcon: Icon(
-          //       Icons.settings,
-          //       color: Colors.black87,
-          //     ),
-          //   label: 'Categories'
-          // )
         ],
       ),
       body: IndexedStack(
@@ -67,7 +56,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
         children: const <Widget>[
           HomeScreen(),
           TasklistScreen(),
-          //CategoryScreen()
         ],
       ),
     );

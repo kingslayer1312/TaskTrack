@@ -329,29 +329,60 @@ class _TasklistScreenState extends State<TasklistScreen> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      if (ordering == "priority") {
-                        ordering = "deadline";
-                      }
-                      else {
-                        ordering = "priority";
-                      }
-                    });
-                    refreshTasks(ordering);
-                  },
-                  child: Text((ordering == "priority") ? "deadline".toUpperCase() : "priority".toUpperCase())
+            Text(
+              "Sort Tasks",
+              style: GoogleFonts.montserrat(
+                fontSize: 20,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(AppTheme.gunmetal),
+                    foregroundColor: MaterialStatePropertyAll<Color>(AppTheme.dun)
+                ),
+                onPressed: () {
+                  setState(() {
+                    if (ordering == "priority") {
+                      ordering = "deadline";
+                    }
+                    else {
+                      ordering = "priority";
+                    }
+                  });
+                  refreshTasks(ordering);
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.sort),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      (ordering == "priority") ? "deadline".toUpperCase() : "priority".toUpperCase(),
+                      style: GoogleFonts.montserrat(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      ),
+                    )
+                  ],
                 )
-              ],
             ),
             SizedBox(
-              height: 10,
+              height: 15,
+            ),
+            Divider(
+              thickness: 1,
+              height: 20,
+              indent: 10,
+              endIndent: 10,
+              color: Colors.black87,
+            ),
+            SizedBox(
+              height: 15,
             ),
             Expanded(
               child: ListView.builder(

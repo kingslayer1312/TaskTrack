@@ -86,10 +86,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     shadowColor: AppTheme.khaki,
                     borderRadius: BorderRadius.circular(150),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(40.0), // Adjust the radius as needed
+                      borderRadius: BorderRadius.circular(40.0),
                       child: Container(
                           height: 60.0,
-                          width: 300.0,// Adjust the height as needed
+                          width: 300.0,
                           color: AppTheme.gunmetal,
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
