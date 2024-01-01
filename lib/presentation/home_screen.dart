@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   DateFormat("dd.MM.yyyy").format(DateTime.now()),
                                   style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 24,
+                                      fontSize: 22,
                                       color: Colors.white70
                                   ),
                                 ),
@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   getCurrentTime(),
                                   style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 24,
+                                      fontSize: 22,
                                       color: Colors.white70
                                   ),
                                 ),
