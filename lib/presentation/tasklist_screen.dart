@@ -328,8 +328,34 @@ class _TasklistScreenState extends State<TasklistScreen> {
                 color: Colors.black87
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      if (ordering == "priority") {
+                        ordering = "deadline";
+                      }
+                      else {
+                        ordering = "priority";
+                      }
+                    });
+                    refreshTasks(ordering);
+                  },
+                  child: Text((ordering == "priority") ? "deadline".toUpperCase() : "priority".toUpperCase())
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
             Expanded(
               child: ListView.builder(
+                padding: EdgeInsets.zero,
                 itemCount: tasks.length,
                 itemBuilder: (context, index) {
                   final task = tasks[index];
