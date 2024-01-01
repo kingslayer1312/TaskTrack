@@ -97,6 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                Spacer(
+                                  flex: 2,
+                                ),
                                 Text(
                                   DateFormat("dd.MM.yyyy").format(DateTime.now()),
                                   style: GoogleFonts.montserrat(
@@ -122,6 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: Colors.white70
                                   ),
                                 ),
+                                Spacer(
+                                  flex: 2,
+                                ),
                               ],
                             ),
                           )// Adjust the color as needed
@@ -132,57 +138,57 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 50,
                 ),
                 PhysicalModel(
-                  color: Colors.white70,
-                  elevation: 30,
-                  shadowColor: AppTheme.khaki,
-                  borderRadius: BorderRadius.circular(150),
-                  child: Container(
-                      width: 300,
-                      height: 300,
-                      decoration: BoxDecoration(
-                          color: AppTheme.gunmetal,
-                          shape: BoxShape.circle
-                      ),
-                      child: Center(
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                          width: 250,
-                          height: 250,
-                          decoration: BoxDecoration(
-                              color: AppTheme.khaki,
-                              shape: BoxShape.circle
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Total Tasks",
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppTheme.gunmetal
-                                  ),
-                                ),
-                                Divider(
-                                  thickness: 0.5,
-                                  color: Colors.black87,
-                                ),
-                                Text(
-                                  "$numberOfTasks",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppTheme.hookersGreen
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
+                    color: Colors.white70,
+                    elevation: 30,
+                    shadowColor: AppTheme.khaki,
+                    borderRadius: BorderRadius.circular(150),
+                    child: Container(
+                        width: 300,
+                        height: 300,
+                        decoration: BoxDecoration(
+                            color: AppTheme.gunmetal,
+                            shape: BoxShape.circle
                         ),
-                      )
-                  )
-                ),
+                        child: Center(
+                          child: Container(
+                              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              width: 250,
+                              height: 250,
+                              decoration: BoxDecoration(
+                                  color: AppTheme.khaki,
+                                  shape: BoxShape.circle
+                              ),
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Total Tasks",
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppTheme.gunmetal
+                                      ),
+                                    ),
+                                    Divider(
+                                      thickness: 0.5,
+                                      color: Colors.black87,
+                                    ),
+                                    Text(
+                                      "$numberOfTasks",
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w600,
+                                          color: AppTheme.hookersGreen
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                          ),
+                        )
+                    )
+                  ),
               ]
           )
         )
