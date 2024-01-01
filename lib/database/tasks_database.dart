@@ -61,8 +61,10 @@ class TasksDatabase {
 
   Future<List<Task>> readAllTasks(String condition) async {
     final db = await instance.database;
-    final tasks = await db.rawQuery('''
+    final tasks = (condition == "deadline") ? await db.rawQuery('''
       SELECT * FROM $tasksTable ORDER BY $condition
+    ''') : await db.rawQuery('''
+      SELECT * FROM $tasksTable ORDER BY $condition DESC
     ''');
     return tasks.map((json) => Task.fromJson(json)).toList();
   }
@@ -90,6 +92,11 @@ class TasksDatabase {
       where: '${TaskFields.id} = ?',
       whereArgs: [id],
     );
+  }
+
+  Future<int> deleteAllTasks() async {
+    final db = await instance.database;
+    return await db.delete(tasksTable);
   }
 
   Future close() async {

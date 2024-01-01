@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tasktrack/presentation/category_screen.dart';
 import 'package:tasktrack/presentation/home_screen.dart';
 import 'package:tasktrack/presentation/tasklist_screen.dart';
 import 'package:tasktrack/themes/app_theme.dart';
@@ -50,17 +49,17 @@ class _NavigationScreenState extends State<NavigationScreen> {
               ),
             label: 'Tasks'
           ),
-          NavigationDestination(
-            icon: Icon(
-              Icons.category_outlined,
-              color: Colors.white70,
-            ),
-              selectedIcon: Icon(
-                Icons.category,
-                color: Colors.black87,
-              ),
-            label: 'Categories'
-          )
+          // NavigationDestination(
+          //   icon: Icon(
+          //     Icons.settings_outlined,
+          //     color: Colors.white70,
+          //   ),
+          //     selectedIcon: Icon(
+          //       Icons.settings,
+          //       color: Colors.black87,
+          //     ),
+          //   label: 'Categories'
+          // )
         ],
       ),
       body: IndexedStack(
@@ -68,7 +67,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         children: const <Widget>[
           HomeScreen(),
           TasklistScreen(),
-          CategoryScreen()
+          //CategoryScreen()
         ],
       ),
     );

@@ -31,6 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  String getCurrentTime() {
+    return "${DateFormat("kk:mm").format(DateTime.now())} ${DateTime.now().timeZoneName}";
+  }
+
   Future refreshTasks() async {
     setState(() {
       isLoading = true;
@@ -111,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   flex: 2,
                                 ),
                                 Text(
-                                  "${DateFormat("kk:mm").format(DateTime.now())} ${DateTime.now().timeZoneName}",
+                                  getCurrentTime(),
                                   style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 24,
